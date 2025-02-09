@@ -1,5 +1,5 @@
 # Configurations for the model
-DATA_PATH = "dataset/recipes_dataset.csv"
+DATA_PATH = "dataset/recipes_82k.csv"
 
 # Model settings
 EMBEDDING_DIM = 128

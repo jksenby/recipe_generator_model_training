@@ -11,7 +11,7 @@ nltk.download('punkt')
 # Load dataset
 def load_data():
     df = pd.read_csv(DATA_PATH).dropna()
-    df = df[['Ingredients', 'Instructions']]
+    df = df[['ingredients', 'cooking_method']]
     return df
 
 # Clean text function
@@ -22,19 +22,19 @@ def clean_text(text):
 
 def preprocess_data():
     df = load_data()
-    df['Ingredients'] = df['Ingredients'].apply(clean_text)
-    df['Instructions'] = df['Instructions'].apply(clean_text)
+    df['ingredients'] = df['ingredients'].apply(clean_text)
+    df['cooking_method'] = df['cooking_method'].apply(clean_text)
 
     # Tokenization
     ingredient_tokenizer = Tokenizer()
-    ingredient_tokenizer.fit_on_texts(df['Ingredients'])
+    ingredient_tokenizer.fit_on_texts(df['ingredients'])
 
     instruction_tokenizer = Tokenizer()
-    instruction_tokenizer.fit_on_texts(df['Instructions'])
+    instruction_tokenizer.fit_on_texts(df['cooking_method'])
 
     # Convert text to sequences
-    ingredient_sequences = ingredient_tokenizer.texts_to_sequences(df['Ingredients'])
-    instruction_sequences = instruction_tokenizer.texts_to_sequences(df['Instructions'])
+    ingredient_sequences = ingredient_tokenizer.texts_to_sequences(df['ingredients'])
+    instruction_sequences = instruction_tokenizer.texts_to_sequences(df['cooking_method'])
 
     max_ing_len = max(len(seq) for seq in ingredient_sequences)
     max_instr_len = max(len(seq) for seq in instruction_sequences)

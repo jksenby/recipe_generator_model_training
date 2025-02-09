@@ -20,4 +20,4 @@ y_input = np.hstack((np.ones((y.shape[0], 1)), y[:, :-1]))  # Add start token
 model.fit([X, y_input], y, batch_size=BATCH_SIZE, epochs=EPOCHS, validation_split=0.1)
 
 # Save model
-model.save("saved_model/recipe_generator.keras")
+model.save("saved_model/recipe_generator82k.keras")
